@@ -1,4 +1,4 @@
-# Drug Interaction Checker
+# DawaCross
 
 A Laravel 11 application for checking drug-drug interactions, reviewing clinical details, and managing interaction data through a protected admin area.
 
@@ -130,4 +130,3 @@ This application is a clinical support tool. It is not a substitute for pharmaci
 - Additional audit fields for clinical review workflow
 - Production deployment checklist
 - Optional screenshots and user guide updates
-

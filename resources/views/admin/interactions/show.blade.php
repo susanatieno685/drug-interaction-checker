@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Interaction Details - Admin - ' . config('app.name', 'Drug Interaction Checker'))
+@section('title', 'Interaction Details | ' . config('app.name', 'DawaCross'))
 
 @section('content')
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">

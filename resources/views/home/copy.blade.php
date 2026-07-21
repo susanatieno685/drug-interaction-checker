@@ -1,32 +1,53 @@
 @extends('layouts.frontend')
 
-@section('title', config('app.name', 'Drug Interaction Checker'))
+@section('title', 'Home | ' . config('app.name', 'DawaCross'))
 
 @section('content')
-    <div class="row justify-content-center align-items-center g-4">
-        <div class="col-12 col-xl-5">
-            <div class="pe-xl-4">
-                <span class="badge text-bg-primary rounded-pill mb-3">Version 1 public checker</span>
-                <h1 class="display-5 fw-bold mb-3">Drug Interaction Checker</h1>
-                <p class="lead text-secondary mb-4">
-                    Search two medicines, review the interaction result, and keep clinical decisions grounded in the current database.
+    <div class="row align-items-center g-4 g-lg-5">
+        <div class="col-12 col-xl-6">
+            <div class="hero-panel rounded-4 p-4 p-md-5">
+                <span class="badge rounded-pill text-bg-primary mb-3 px-3 py-2">Clinical decision support</span>
+                <h1 class="display-5 fw-bold mb-3">Check Drug Interactions with Confidence</h1>
+                <p class="lead text-muted mb-4">
+                    Evidence-based drug interaction checking designed for healthcare professionals and students.
                 </p>
-                <div class="alert alert-warning border-0 shadow-sm mb-0" role="alert">
-                    Clinical content in this application must be reviewed by a pharmacist before use in patient care.
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <a href="#checker" class="btn btn-primary btn-lg px-4">Check Interactions</a>
+                    <a href="#learn-more" class="btn btn-outline-primary btn-lg px-4">Learn More</a>
+                </div>
+                <div class="row g-3" id="learn-more">
+                    <div class="col-md-4">
+                        <div class="surface-soft rounded-4 p-3 h-100">
+                            <h2 class="h6 fw-bold mb-2">Safety</h2>
+                            <p class="small text-muted mb-0">Focused on clear interaction risk communication.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="surface-soft rounded-4 p-3 h-100">
+                            <h2 class="h6 fw-bold mb-2">Accuracy</h2>
+                            <p class="small text-muted mb-0">Matches are based on your current local database.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="surface-soft rounded-4 p-3 h-100">
+                            <h2 class="h6 fw-bold mb-2">Simplicity</h2>
+                            <p class="small text-muted mb-0">Clean workflows for fast clinical review.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 col-xl-7">
-            <div class="card border-0 shadow-lg rounded-4 overflow-hidden" id="checker">
+        <div class="col-12 col-xl-6">
+            <div class="card rounded-4 overflow-hidden" id="checker">
                 <div class="card-body p-4 p-md-5">
                     <div class="mb-4">
-                        <h2 class="h4 fw-bold mb-2">Check an interaction</h2>
-                        <p class="text-secondary mb-0">Choose two different drugs to begin the lookup.</p>
+                        <h2 class="h4 fw-bold mb-2">DawaCross</h2>
+                        <p class="text-muted mb-0">Choose two different drugs to begin the lookup.</p>
                     </div>
 
                     @if ($drugs->isEmpty())
-                        <div class="alert alert-info border-0 shadow-sm mb-0" role="alert">
+                        <div class="alert alert-info mb-0" role="alert">
                             No drugs are available in the current database yet. Please ask an administrator to load seed data.
                         </div>
                     @else
@@ -43,7 +64,7 @@
                                 data-select-search="drug-a"
                                 aria-describedby="drug-a-help"
                             >
-                            <select id="drug-a" name="drug_a_id" class="form-select form-select-lg" aria-describedby="drug-a-help" size="6">
+                            <select id="drug-a" name="drug_a_id" class="form-select form-select-lg interaction-select" aria-describedby="drug-a-help" size="6">
                                 <option value="">Choose a drug</option>
                                 @foreach ($drugs as $drug)
                                     <option value="{{ $drug->id }}" @selected(old('drug_a_id') == $drug->id)>
@@ -65,7 +86,7 @@
                                 data-select-search="drug-b"
                                 aria-describedby="drug-b-help"
                             >
-                            <select id="drug-b" name="drug_b_id" class="form-select form-select-lg" aria-describedby="drug-b-help" size="6">
+                            <select id="drug-b" name="drug_b_id" class="form-select form-select-lg interaction-select" aria-describedby="drug-b-help" size="6">
                                 <option value="">Choose a drug</option>
                                 @foreach ($drugs as $drug)
                                     <option value="{{ $drug->id }}" @selected(old('drug_b_id') == $drug->id)>
@@ -91,7 +112,7 @@
                     <div class="mt-4 pt-3 border-top">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <div class="p-3 bg-light rounded-3 h-100">
+                                <div class="p-3 surface-soft rounded-3 h-100">
                                     <h3 class="h6 fw-bold">Two-drug lookup</h3>
                                     <p class="small text-secondary mb-0">
                                         Version 1 focuses on checking one drug pair at a time.
@@ -99,7 +120,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="p-3 bg-light rounded-3 h-100">
+                                <div class="p-3 surface-soft rounded-3 h-100">
                                     <h3 class="h6 fw-bold">Responsive by default</h3>
                                     <p class="small text-secondary mb-0">
                                         The layout uses Bootstrap 5 and adapts cleanly to smaller screens.

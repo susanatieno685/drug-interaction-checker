@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Interaction Result - ' . config('app.name', 'Drug Interaction Checker'))
+@section('title', 'Drug Interaction Checker | ' . config('app.name', 'DawaCross'))
 
 @section('content')
     <div class="row justify-content-center">
@@ -16,9 +16,9 @@
             </div>
 
             @if (!empty($message))
-                <div class="card border-0 shadow-sm rounded-4 mb-4" aria-live="polite">
+                <div class="card rounded-4 mb-4" aria-live="polite">
                     <div class="card-body p-4 p-md-5">
-                        <div class="alert alert-info border-0 mb-3" role="alert">
+                        <div class="alert alert-info mb-3" role="alert">
                             {{ $message }}
                         </div>
                         <p class="mb-0 text-secondary">
@@ -29,7 +29,7 @@
             @endif
 
             @if (!empty($interaction))
-                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card rounded-4 overflow-hidden">
                     <div class="card-body p-4 p-md-5">
                         <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-4">
                             <div>
@@ -45,26 +45,26 @@
 
                         <div class="row g-3">
                             <div class="col-12">
-                                <div class="p-3 border rounded-3 bg-light">
+                                <div class="p-3 surface-soft rounded-3">
                                     <h3 class="h6 fw-bold">Clinical effect</h3>
                                     <p class="mb-0">{{ $interaction->clinical_effect }}</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="p-3 border rounded-3 h-100 bg-light">
+                                <div class="p-3 surface-soft rounded-3 h-100">
                                     <h3 class="h6 fw-bold">Mechanism</h3>
                                     <p class="mb-0">{{ $interaction->mechanism }}</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="p-3 border rounded-3 h-100 bg-light">
+                                <div class="p-3 surface-soft rounded-3 h-100">
                                     <h3 class="h6 fw-bold">Management recommendation</h3>
                                     <p class="mb-0">{{ $interaction->management }}</p>
                                 </div>
                             </div>
                             @if ($interaction->monitoring_advice)
                                 <div class="col-md-6">
-                                    <div class="p-3 border rounded-3 h-100 bg-light">
+                                    <div class="p-3 surface-soft rounded-3 h-100">
                                         <h3 class="h6 fw-bold">Monitoring advice</h3>
                                         <p class="mb-0">{{ $interaction->monitoring_advice }}</p>
                                     </div>
@@ -72,7 +72,7 @@
                             @endif
                             @if ($interaction->evidence_level)
                                 <div class="col-md-6">
-                                    <div class="p-3 border rounded-3 h-100 bg-light">
+                                    <div class="p-3 surface-soft rounded-3 h-100">
                                         <h3 class="h6 fw-bold">Evidence level</h3>
                                         <p class="mb-0">{{ $interaction->evidence_level }}</p>
                                     </div>
@@ -80,7 +80,7 @@
                             @endif
                             @if ($interaction->reference)
                                 <div class="col-12">
-                                    <div class="p-3 border rounded-3 bg-light">
+                                    <div class="p-3 surface-soft rounded-3">
                                         <h3 class="h6 fw-bold">Reference</h3>
                                         <p class="mb-0">{{ $interaction->reference }}</p>
                                     </div>
@@ -88,7 +88,7 @@
                             @endif
                             @if ($interaction->notes)
                                 <div class="col-12">
-                                    <div class="p-3 border rounded-3 bg-light">
+                                    <div class="p-3 surface-soft rounded-3">
                                         <h3 class="h6 fw-bold">Notes</h3>
                                         <p class="mb-0">{{ $interaction->notes }}</p>
                                     </div>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
             @else
-                <div class="card border-0 shadow-lg rounded-4" aria-live="polite">
+                <div class="card rounded-4" aria-live="polite">
                     <div class="card-body p-4 p-md-5">
                         <div class="mb-3">
                             <span class="badge text-bg-secondary rounded-pill">No database match</span>
@@ -111,7 +111,7 @@
                         <p class="text-secondary mb-3">
                             {{ $message }}
                         </p>
-                        <div class="alert alert-warning border-0 mb-4" role="alert">
+                        <div class="alert alert-warning mb-4" role="alert">
                             This does not mean the combination is medically safe. It means the current database does not contain a matching record.
                         </div>
                         <div class="d-flex flex-wrap gap-2">

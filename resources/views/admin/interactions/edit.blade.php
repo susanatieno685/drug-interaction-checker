@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Interaction - Admin - ' . config('app.name', 'Drug Interaction Checker'))
+@section('title', 'Edit Interaction | ' . config('app.name', 'DawaCross'))
 
 @section('content')
     <div class="mb-4">

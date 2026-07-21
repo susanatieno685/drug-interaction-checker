@@ -1,19 +1,19 @@
 @extends('layouts.admin')
 
-@section('title', 'Interactions - Admin - ' . config('app.name', 'Drug Interaction Checker'))
+@section('title', 'Interactions | ' . config('app.name', 'DawaCross'))
 
 @section('content')
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
         <div>
             <h1 class="h3 fw-bold mb-1">Interactions</h1>
-            <p class="text-secondary mb-0">Manage the clinical interaction records in the database.</p>
+        <p class="text-muted mb-0">Manage the clinical interaction records in the database.</p>
         </div>
         <a href="{{ route('admin.interactions.create') }}" class="btn btn-primary">
             Add Interaction
         </a>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card surface-soft mb-4">
         <div class="card-body">
             <form method="GET" action="{{ route('admin.interactions.index') }}" class="row g-3 align-items-end">
                 <div class="col-12 col-md-6">
@@ -48,10 +48,10 @@
         </div>
     </div>
 
-    <div class="card border-0 shadow-sm">
+    <div class="card surface-soft">
         <div class="card-body">
             @if ($interactions->isEmpty())
-                <p class="text-secondary mb-0">No interactions found.</p>
+                <p class="text-muted mb-0">No interactions found.</p>
             @else
                 <div class="table-responsive">
                     <table class="table align-middle">

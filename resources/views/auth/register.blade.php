@@ -1,14 +1,14 @@
 @extends('layouts.frontend')
 
-@section('title', 'Register - ' . config('app.name', 'Drug Interaction Checker'))
+@section('title', 'Register | ' . config('app.name', 'DawaCross'))
 
 @section('content')
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6">
-            <div class="card border-0 shadow-lg rounded-4">
+            <div class="card rounded-4 surface-soft">
                 <div class="card-body p-4 p-md-5">
                     <h1 class="h3 fw-bold mb-3">Create account</h1>
-                    <p class="text-secondary mb-4">Register to access protected pages.</p>
+                    <p class="text-muted mb-4">Register to access protected pages.</p>
 
                     <form method="POST" action="{{ route('register.store') }}" class="row g-3">
                         @csrf
@@ -29,7 +29,7 @@
                             <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" required>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary px-4">Register</button>
                         </div>
                     </form>
                 </div>
