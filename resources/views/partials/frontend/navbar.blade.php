@@ -4,21 +4,21 @@
             @include('partials.branding.logo')
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#frontendNav" aria-controls="frontendNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#frontendNavbar" aria-controls="frontendNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="frontendNav">
-            <div class="ms-auto d-flex flex-column flex-lg-row align-items-lg-center gap-2 pt-3 pt-lg-0">
+        <div class="collapse navbar-collapse" id="frontendNavbar">
+            <div class="navbar-actions ms-auto d-flex flex-column flex-lg-row align-items-lg-center gap-2 pt-3 pt-lg-0">
                 <a
-                    class="btn btn-sm nav-pill {{ request()->routeIs('home') ? 'nav-pill-active' : 'nav-pill-ghost' }}"
+                    class="btn btn-sm nav-pill nav-pill-ghost {{ request()->routeIs('home') ? 'nav-pill-active' : '' }}"
                     href="{{ url('/') }}"
                 >
                     Home
                 </a>
                 @auth
                     <a
-                        class="btn btn-sm nav-pill {{ request()->routeIs('dashboard') ? 'nav-pill-active' : 'nav-pill-ghost' }}"
+                        class="btn btn-sm nav-pill nav-pill-ghost {{ request()->routeIs('dashboard') ? 'nav-pill-active' : '' }}"
                         href="{{ route('dashboard') }}"
                     >
                         Dashboard

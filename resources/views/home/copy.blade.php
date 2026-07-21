@@ -133,4 +133,6 @@
             </div>
         </div>
     </div>
+
+    @include('partials.faq')
 @endsection
