@@ -109,26 +109,7 @@
                         </form>
                     @endif
 
-                    <div class="mt-4 pt-3 border-top">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="p-3 surface-soft rounded-3 h-100">
-                                    <h3 class="h6 fw-bold">Two-drug lookup</h3>
-                                    <p class="small text-secondary mb-0">
-                                        Version 1 focuses on checking one drug pair at a time.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="p-3 surface-soft rounded-3 h-100">
-                                    <h3 class="h6 fw-bold">Responsive by default</h3>
-                                    <p class="small text-secondary mb-0">
-                                        The layout uses Bootstrap 5 and adapts cleanly to smaller screens.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
