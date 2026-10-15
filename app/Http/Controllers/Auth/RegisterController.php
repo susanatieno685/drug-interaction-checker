@@ -32,10 +32,8 @@ class RegisterController extends Controller
             'role' => 'user',
         ]);
 
-        Auth::login($user);
+        $user->sendEmailVerificationNotification();
 
-        $request->session()->regenerate();
-
-        return redirect()->route('dashboard');
+        return redirect()->route('verification.notice')->with('status', 'verification-link-sent');
     }
 }

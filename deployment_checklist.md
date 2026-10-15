@@ -19,7 +19,7 @@ Use this checklist before deploying the Drug Interaction Checker to production.
 
 ## Data Review
 
-- Verify the seeded interaction records have been reviewed by a pharmacist.
+- Confirm the interaction data is appropriate for the intended educational use. Do not represent it as clinically validated unless that has been independently established.
 - Verify the admin account exists and has the correct role.
 - Remove or adjust any placeholder references before public release.
 
@@ -54,6 +54,9 @@ Use this checklist before deploying the Drug Interaction Checker to production.
 - Confirm admin routes are protected by `auth` and `admin`.
 - Confirm no real credentials are committed.
 - Confirm the clinical disclaimer is visible on the public site.
+- Configure a production mail transport through `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_SCHEME`, `MAIL_FROM_ADDRESS`, and `MAIL_FROM_NAME` using protected environment secrets.
+- Set `APP_URL` to the public HTTPS domain so verification links are signed for the correct host.
+- Run `php artisan migrate --force` to add the per-user interaction-check history table.
 
 ## Backup and Recovery
 

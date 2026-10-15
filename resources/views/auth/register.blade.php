@@ -8,7 +8,7 @@
             <div class="card rounded-4 surface-soft">
                 <div class="card-body p-4 p-md-5">
                     <h1 class="h3 fw-bold mb-3">Create account</h1>
-                    <p class="text-muted mb-4">Register to access protected pages.</p>
+                    <p class="text-muted mb-4">Register and verify your email address to access protected pages.</p>
 
                     <form method="POST" action="{{ route('register.store') }}" class="row g-3">
                         @csrf

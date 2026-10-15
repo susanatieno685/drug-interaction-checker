@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Drug;
-use App\Models\DrugInteraction;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -16,38 +15,31 @@ class DashboardController extends Controller
             ->orderBy('generic_name')
             ->get(['id', 'generic_name', 'brand_name']);
 
-        $totalChecks = DrugInteraction::query()->count();
-        $savedInteractionsCount = 0;
-        $majorInteractionsCount = DrugInteraction::query()
-            ->whereHas('severity', fn ($query) => $query->where('slug', 'major')->orWhere('slug', 'contraindicated'))
-            ->count();
+        $checks = $user->interactionChecks()
+            ->with(['drugA', 'drugB', 'interaction.severity'])
+            ->latest()
+            ->get();
 
-        $recentChecks = DrugInteraction::query()
-            ->with(['drugA', 'drugB', 'severity'])
-            ->latest('updated_at')
+        $totalChecks = $checks->count();
+        $majorInteractionsCount = $checks->filter(function ($check) {
+            return in_array($check->interaction?->severity?->slug, ['major', 'contraindicated'], true);
+        })->count();
+
+        $recentChecks = $checks
             ->take(5)
-            ->get()
-            ->map(function (DrugInteraction $interaction, int $index) {
-                $severity = $interaction->severity;
+            ->map(function ($check) {
+                $severity = $check->interaction?->severity;
 
                 return [
-                    'id' => $interaction->id,
-                    'pair' => trim($interaction->drugA->generic_name . ' + ' . $interaction->drugB->generic_name),
-                    'severity_name' => $severity?->name ?? 'Unknown',
+                    'id' => $check->id,
+                    'pair' => trim($check->drugA->generic_name . ' + ' . $check->drugB->generic_name),
+                    'severity_name' => $severity?->name ?? 'No match recorded',
                     'severity_class' => $severity?->bootstrap_class ?? 'secondary',
-                    'date' => optional($interaction->updated_at ?? $interaction->created_at)->format('M j, Y'),
-                    'is_saved' => $index === 0,
+                    'date' => optional($check->created_at)->format('M j, Y'),
                 ];
             });
 
-        $savedInteractions = $recentChecks->take(3)->map(function (array $check) {
-            return [
-                'pair' => $check['pair'],
-                'severity_name' => $check['severity_name'],
-                'severity_class' => $check['severity_class'],
-                'saved_at' => now()->subDays(2)->format('M j, Y'),
-            ];
-        });
+        $savedInteractions = collect();
 
         $navigationItems = [
             ['label' => 'Dashboard', 'href' => route('dashboard')],
@@ -62,12 +54,13 @@ class DashboardController extends Controller
         return view('dashboard', [
             'user' => $user,
             'totalChecks' => $totalChecks,
-            'savedInteractionsCount' => $savedInteractionsCount,
+            'savedInteractionsCount' => $savedInteractions->count(),
             'majorInteractionsCount' => $majorInteractionsCount,
             'recentChecks' => $recentChecks,
             'savedInteractions' => $savedInteractions,
             'navigationItems' => $navigationItems,
             'drugs' => $drugs,
+            'interactionResult' => session('interaction_result'),
         ]);
     }
 }

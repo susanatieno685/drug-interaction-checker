@@ -97,7 +97,7 @@
                         </div>
 
                         <div class="alert alert-warning mt-4 mb-0" role="alert">
-                            Clinical content in this application must be reviewed by a pharmacist before use in patient care.
+                            This result reflects only the current database and may not account for your health circumstances. Do not change medication based solely on this result; consult a qualified healthcare professional.
                         </div>
                     </div>
                 </div>

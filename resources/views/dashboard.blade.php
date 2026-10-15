@@ -4,6 +4,26 @@
 
 @section('content')
     <div class="row g-4">
+        @if ($interactionResult)
+            <div class="col-12">
+                <div class="alert alert-info rounded-4 mb-0" role="status">
+                    <strong>{{ $interactionResult['drug_a'] }} + {{ $interactionResult['drug_b'] }}:</strong>
+                    {{ $interactionResult['message'] ?? 'A result is available in the current database.' }}
+                    @if ($interactionResult['interaction_id'])
+                        <p class="fw-semibold mb-1 mt-2">{{ $interactionResult['severity'] ?? 'Interaction found in the current database' }}</p>
+                        <p class="mb-1">{{ $interactionResult['clinical_effect'] }}</p>
+                        <details class="mt-2">
+                            <summary>Interaction details</summary>
+                            <p class="mt-2 mb-1"><strong>Mechanism:</strong> {{ $interactionResult['mechanism'] }}</p>
+                            <p class="mb-1"><strong>Management:</strong> {{ $interactionResult['management'] }}</p>
+                            @if ($interactionResult['monitoring_advice'])<p class="mb-1"><strong>Monitoring:</strong> {{ $interactionResult['monitoring_advice'] }}</p>@endif
+                            @if ($interactionResult['evidence_level'])<p class="mb-1"><strong>Evidence level:</strong> {{ $interactionResult['evidence_level'] }}</p>@endif
+                            @if ($interactionResult['reference'])<p class="mb-0"><strong>Reference:</strong> {{ $interactionResult['reference'] }}</p>@endif
+                        </details>
+                    @endif
+                </div>
+            </div>
+        @endif
         <div class="col-12">
             <div class="dashboard-hero rounded-4 p-4 p-md-5">
                 <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
@@ -49,7 +69,7 @@
                         <div class="card-body p-4">
                             <span class="metric-label">Total checks</span>
                             <div class="metric-value">{{ number_format($totalChecks) }}</div>
-                            <p class="text-muted mb-0">Total interaction records in the current database.</p>
+                            <p class="text-muted mb-0">Pairs you have successfully checked while signed in.</p>
                         </div>
                     </div>
                 </div>
@@ -58,7 +78,7 @@
                         <div class="card-body p-4">
                             <span class="metric-label">Saved interactions</span>
                             <div class="metric-value">{{ number_format($savedInteractionsCount) }}</div>
-                            <p class="text-muted mb-0">Bookmark storage is not yet implemented, so this remains placeholder data.</p>
+                            <p class="text-muted mb-0">Interactions you have saved from your checks.</p>
                         </div>
                     </div>
                 </div>
@@ -67,7 +87,7 @@
                         <div class="card-body p-4">
                             <span class="metric-label">Major interactions</span>
                             <div class="metric-value">{{ number_format($majorInteractionsCount) }}</div>
-                            <p class="text-muted mb-0">Severe or contraindicated entries found in the current library.</p>
+                            <p class="text-muted mb-0">Major or contraindicated results from your checks.</p>
                         </div>
                     </div>
                 </div>
@@ -157,9 +177,9 @@
                         </div>
                     </div>
                     <div class="clinical-disclaimer rounded-4 p-3">
-                        <p class="fw-semibold mb-1">Clinical disclaimer</p>
+                        <p class="fw-semibold mb-1">Educational information</p>
                         <p class="small mb-0">
-                            This information supports but does not replace professional medical advice, judgment, or local prescribing policy.
+                            Results may not cover every interaction or individual circumstance. Do not change medication based solely on these results. Consult a qualified healthcare professional.
                         </p>
                     </div>
                 </div>
@@ -209,10 +229,10 @@
                 <div class="card-body p-4 p-md-5">
                     <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
                         <h2 class="h4 fw-bold mb-0">Saved interactions</h2>
-                        <span class="badge text-bg-light text-primary">Placeholder data</span>
+                        <span class="badge text-bg-light text-primary">Saved items</span>
                     </div>
                     <p class="text-muted">
-                        There is no saved-interactions table yet, so this section uses placeholder cards until that data model exists.
+                        Saving interaction results is not available yet.
                     </p>
 
                     <div class="vstack gap-3">
@@ -237,8 +257,8 @@
         </div>
 
         <div class="col-12">
-            <div class="alert alert-warning rounded-4 clinical-disclaimer mb-0" role="alert">
-                This data is intended to support clinical review, not replace professional medical advice or local policy.
+            <div class="alert alert-light border rounded-4 clinical-disclaimer mb-0" role="note">
+                <strong>For educational and informational purposes only.</strong> DawaCross does not diagnose, treat, cure, or prevent disease and is not a substitute for professional medical judgment or individualized healthcare advice. Results may not cover every interaction, patient-specific factor, contraindication, or clinical circumstance. Do not start, stop, or change medication based solely on these results; consult a qualified healthcare professional.
             </div>
         </div>
     </div>

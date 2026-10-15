@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 class DrugInteractionSeeder extends Seeder
 {
     /**
-     * Clinical content requires pharmacist review before use.
+     * Seeded interaction content is educational data and is not independently clinically validated.
      */
     public function run(): void
     {

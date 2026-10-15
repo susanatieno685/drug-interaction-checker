@@ -25,7 +25,7 @@
                     <div class="col-md-4">
                         <div class="surface-soft rounded-4 p-3 h-100">
                             <h2 class="h6 fw-bold mb-2">Accuracy</h2>
-                            <p class="small text-muted mb-0">Matches are based on your current local database.</p>
+                            <p class="small text-muted mb-0">Matches are based on our current local database.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
